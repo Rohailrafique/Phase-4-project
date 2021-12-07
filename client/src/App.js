@@ -1,24 +1,38 @@
-import logo from './logo.svg';
+import { useEffect } from 'react';
+import LandingPage from './components/LandingPage';
 import './App.css';
+import Signup from './components/Signup';
+import NavBar from './components/NavBar';
+import Profile from './components/Profile';
+import FollowList from './components/FollowList';
 
 function App() {
+ 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+  <>
+    <LandingPage/>
+    <br></br>
+    <br></br>
+    <br></br>
+    <Signup/>
+    <br></br>
+    <br></br>
+    <br></br>
+    <br></br>
+    <NavBar/>
+    <br></br>
+    <br></br>
+    <br></br>
+    <br></br>
+    <Profile/>
+    <br></br>
+    <br></br>
+    <br></br>
+    <br></br>
+    <FollowList/>
+
+
+  </>
   );
 }
 
