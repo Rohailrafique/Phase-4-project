@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :reactions
   resources :comments
   resources :posts
-  resources :followers
+  resources :followers, only: [:create, :destroy]
   resources :users
 
   post '/login', to: 'sessions#create'
