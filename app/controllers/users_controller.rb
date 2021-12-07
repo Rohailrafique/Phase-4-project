@@ -1,6 +1,25 @@
 class UsersController < ApplicationController
-    has_many :posts
-    has_many :reactions
-    has_many :comments
-    has_many :followers
+
+    def index
+        render json: User.all
+    end
+
+    def show
+        render json: User.find(params[:id])
+    end
+
+    def create
+
+    end
+
+    def update
+
+    end
+
+    def destroy
+        user = User.find(params[:id])
+        user.destroy
+        head :no_content
+    end
+
 end
