@@ -1,36 +1,112 @@
-import React from 'react'
-
+import React from "react";
+import { useState } from "react";
+import { Alert } from 'react-alert';
 
 export default function Signup() {
+  const [newUser, setNewUser] = useState({
+    email: "",
+    display_name: "",
+    password: "",
+    password_confirmation: "",
+    image_url: "",
+    twitter_url: "",
+    facebook_url: "",
+    linkedin_url: "",
+    username: "",
+  });
+  async function handleSignupSubmit(e) {
+    e.preventDefault();
+    console.log(newUser);
+   
+    const response = await fetch("http://localhost:3000/users", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(newUser),
+    })
+    
+    const data = await response.json()
+    if (response.ok) {console.log(data)}
+    else {alert(data.errors.join("\n \n"))} 
 
+  }
 
-    return (
-        <div>
-            <form>
-                <label>Email:</label>
-                <input type='email' required></input>
-                <label>Username:</label>
-                <input type='text' required></input>
-                <label>Password:</label>
-                <input type='password' required></input>
-                <label>Password Confirmation:</label>
-                <input type='password' required></input>
-                <label>Display Name:</label>
-                <input type='text' required></input>
-                <label>Profile Image:</label>
-                <input type='url'></input>
-                <label>LinkedIn:</label>
-                <input type='url' ></input>
-                <label>Twitter:</label>
-                <input type='url'></input>
-                <label>Facebook:</label>
-                <input type='url'></input>
-                <button>Signup</button>
+  function handleOnChange(e) {
+    setNewUser({ ...newUser, [e.target.name]: e.target.value });
+  }
 
-
-
-            </form>
-
-        </div>
-    )
+  return (
+    <div>
+      <form onSubmit={handleSignupSubmit}>
+        <label>Email:</label>
+        <input
+          type="email"
+          name="email"
+          value={newUser.email}
+          onChange={handleOnChange}
+          required
+        ></input>
+        <label>Username:</label>
+        <input
+          type="text"
+          name="username"
+          value={newUser.username}
+          onChange={handleOnChange}
+          required
+        ></input>
+        <label>Password:</label>
+        <input
+          type="password"
+          name="password"
+          value={newUser.password}
+          onChange={handleOnChange}
+          required
+        ></input>
+        <label>Password Confirmation:</label>
+        <input
+          type="password"
+          name="password_confirmation"
+          value={newUser.password_confirmation}
+          onChange={handleOnChange}
+          required
+        ></input>
+        <label>Display Name:</label>
+        <input
+          type="text"
+          name="display_name"
+          value={newUser.display_name}
+          onChange={handleOnChange}
+          required
+        ></input>
+        <label>Profile Image:</label>
+        <input
+          type="url"
+          name="profile_image"
+          value={newUser.image_url}
+          onChange={handleOnChange}
+        ></input>
+        <label>LinkedIn:</label>
+        <input
+          type="url"
+          name="likedin_url"
+          value={newUser.linkedin_url}
+          onChange={handleOnChange}
+        ></input>
+        <label>Twitter:</label>
+        <input
+          type="url"
+          name="twitter_url"
+          value={newUser.twitter_url}
+          onChange={handleOnChange}
+        ></input>
+        <label>Facebook:</label>
+        <input
+          type="url"
+          name="facebook_url"
+          value={newUser.facebook_url}
+          onChange={handleOnChange}
+        ></input>
+        <button>Signup</button>
+      </form>
+    </div>
+  );
 }
