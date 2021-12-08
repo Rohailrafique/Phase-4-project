@@ -1,7 +1,11 @@
 class PostsController < ApplicationController
 
     def index
-        render json: Post.all
+        if params[:user_id]
+            render json: Post.where("user_id = ?", params[:user_id])
+        else
+            render json: Post.all
+        end
     end
 
     def show

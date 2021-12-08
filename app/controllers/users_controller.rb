@@ -8,7 +8,13 @@ class UsersController < ApplicationController
         p session
         p session[:user_id]
         if @current_user
-            render json: @current_user, status: :ok
+            if params[:id] 
+                render json: User.find(params[:id])
+            elsif params[:username]
+                render json: User.find_by(username: params[:username])
+            else
+                render json: @current_user, status: :ok
+            end
         else 
             render json: { errors: ["Not authenticated"] }, status: :unauthorized
         end 

@@ -1,6 +1,6 @@
 import React from 'react'
-
-export default function NavBar({setUser}) {
+import {Link} from 'react-router-dom'
+export default function NavBar({setUser, user}) {
     const handleLogOut = () =>{
         fetch('/logout', {
             method: 'DELETE'
@@ -8,11 +8,10 @@ export default function NavBar({setUser}) {
     }
     return (
         <div>
-            <a href='#'>Blog Feed</a>
-            <a href='#'>Followers</a>
-            <a href='#'>Following</a>
-            <a href='#'>Profile</a>
-            <a href='#' onClick={handleLogOut}>Log Out</a>
+            <Link to='/blogs'>Blog Feed</Link>
+            <Link to={`/followers/${user.username}`}>Connections</Link>
+            <Link to={`/users/${user.username}`}>Profile</Link>
+            <Link to= '/' onClick={handleLogOut}>Log Out</Link>
             
         </div>
     )

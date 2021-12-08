@@ -16,4 +16,7 @@ adam = User.create(email: "adammooredev1@gmail.com", display_name: "adam", usern
 
 Follower.create(follower: kenny, followed: rohail)
 
+Post.create(user_id: 1, title: "test-blog", content: "blablabalblabl")
+Post.create(user_id: 2, title: "test-blog", content: "asdad")
+Post.create(user_id: 3, title: "test-blog", content: "blablabvvvvvvvalblabl")
 

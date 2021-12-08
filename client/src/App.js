@@ -26,9 +26,10 @@ return (<LandingPage  setUser={setUser} />)
 else
   return (
   <>
-    <NavBar setUser={setUser}/>
+    <NavBar user={user} setUser={setUser}/>
     <Routes>
-      <Route path='/blogs' element={<BlogFeed/>}></Route>
+      <Route path='/' element={<BlogFeed user={user}/>}></Route>
+      <Route path='/blogs' element={<BlogFeed user={user}/>}></Route>
       <Route path={`/users/:username`} element={<Profile user={user}/>}></Route>
       <Route path='/followers/:username' element={<FollowList/>}></Route>
       <Route path='/blogs/:id' element={<BlogPost/>}></Route>
