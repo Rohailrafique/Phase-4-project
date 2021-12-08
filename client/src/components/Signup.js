@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 // import { Alert } from 'react-alert';
 
-export default function Signup() {
+export default function Signup({setUser}) {
   const [newUser, setNewUser] = useState({
     email: "",
     display_name: "",
@@ -18,7 +18,7 @@ export default function Signup() {
     e.preventDefault();
     console.log(newUser);
    
-    const response = await fetch("http://localhost:3000/users", {
+    const response = await fetch("/users", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(newUser),
@@ -26,7 +26,7 @@ export default function Signup() {
     
     const data = await response.json()
     if (response.ok) {
-      console.log(data)
+      setUser(data)
       // TODO: reroute after signing in
     }
     else {alert(data.errors.join("\n \n"))} 

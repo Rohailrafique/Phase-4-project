@@ -1,13 +1,24 @@
 import React from 'react'
+import Login from './Login'
+import { useState } from 'react'
+import Signup from './Signup'
 
-export default function LandingPage() {
+export default function LandingPage({setUser}) {
+    const [signUp, setSignUp] = useState(false)
+
     return (
         <div style={{textAlign: 'center'}}>
         <h1>Console Blog</h1>
-        <button> Signup</button>
         <br/>
         <br/>
-        <button>Login</button>
+        <br/>
+        <br/>
+        {signUp?<Signup setUser={setUser}/> :<Login  setUser={setUser} />}
+        <br/>
+        <br/>
+       
+        <button onClick={()=>setSignUp(!signUp)}>New User</button>
+        
         
          </div>
     )

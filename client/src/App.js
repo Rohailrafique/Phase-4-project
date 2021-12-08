@@ -1,49 +1,41 @@
 import { useEffect, useState } from 'react';
+import {Routes, Route} from 'react-router-dom'
 import LandingPage from './components/LandingPage';
-import './App.css';
-import Signup from './components/Signup';
 import NavBar from './components/NavBar';
 import Profile from './components/Profile';
 import FollowList from './components/FollowList';
-import Login from './components/Login';
+import './App.css';
+import BlogFeed from './components/BlogFeed';
+import BlogPost from './components/BlogPost';
+import BlogForm from './components/BlogForm'
+
 
 function App() {
-  const [username, setUsername] = useState('')
+  const [user, setUser] = useState()
 
   useEffect(() => {
     fetch('/me')
-      .then(resp => resp.json())
-      .then(data => console.log(data))
-      .catch(e => console.error(e))
-  }, [username])
+      .then(resp => {
+        if (resp.ok) resp.json().then(data=> setUser(data))
+        else resp.json().then(errors=> console.log(errors))})
+      }, [])
+      
 
+if(!user)
+return (<LandingPage  setUser={setUser} />)
+else
   return (
   <>
-    {username}
-    <LandingPage/>
-    <br></br>
-    <br></br>
-    <br></br>
-    <Login setUsername={setUsername} />
-    <br></br>
-    <br></br>
-    <br></br>
-    <Signup/>
-    <br></br>
-    <br></br>
-    <br></br>
-    <br></br>
-    <NavBar/>
-    <br></br>
-    <br></br>
-    <br></br>
-    <br></br>
-    <Profile/>
-    <br></br>
-    <br></br>
-    <br></br>
-    <br></br>
-    <FollowList/>
+    <NavBar setUser={setUser}/>
+    <Routes>
+      <Route path='/blogs' element={<BlogFeed/>}></Route>
+      <Route path={`/users/:username`} element={<Profile user={user}/>}></Route>
+      <Route path='/followers/:username' element={<FollowList/>}></Route>
+      <Route path='/blogs/:id' element={<BlogPost/>}></Route>
+      <Route path='/blogs/new' element={<BlogForm/>}></Route>
+    </Routes>
+   
+    
 
 
   </>

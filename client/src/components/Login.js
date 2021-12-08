@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-export default function Login({ setUsername }) {
+export default function Login({ setUser }) {
     const [userInfo, setUserInfo] = useState({
         username: "",
         password: ""
@@ -20,7 +20,7 @@ export default function Login({ setUsername }) {
         const data = await response.json();
         if (response.ok) {
             console.log(data);
-            setUsername(data.username)
+            setUser(data)
         }
         else {alert(data.errors.join("\n \n"))} 
 
