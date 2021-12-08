@@ -1,16 +1,29 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import LandingPage from './components/LandingPage';
 import './App.css';
 import Signup from './components/Signup';
 import NavBar from './components/NavBar';
 import Profile from './components/Profile';
 import FollowList from './components/FollowList';
+import Login from './components/Login';
 
 function App() {
- 
+  const [username, setUsername] = useState('')
+
+  useEffect(() => {
+    fetch('http://localhost:3000/me')
+      .then(resp => resp.json())
+      .then(data => console.log(data))
+  }, [])
+
   return (
   <>
+    {username}
     <LandingPage/>
+    <br></br>
+    <br></br>
+    <br></br>
+    <Login setUsername={setUsername} />
     <br></br>
     <br></br>
     <br></br>

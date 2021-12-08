@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { Alert } from 'react-alert';
+// import { Alert } from 'react-alert';
 
 export default function Signup() {
   const [newUser, setNewUser] = useState({
@@ -25,7 +25,10 @@ export default function Signup() {
     })
     
     const data = await response.json()
-    if (response.ok) {console.log(data)}
+    if (response.ok) {
+      console.log(data)
+      // TODO: reroute after signing in
+    }
     else {alert(data.errors.join("\n \n"))} 
 
   }
