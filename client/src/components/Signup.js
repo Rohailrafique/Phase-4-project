@@ -16,6 +16,7 @@ export default function Signup() {
     linkedin_url: "",
     username: "",
   });
+
   async function handleSignupSubmit(e) {
     e.preventDefault();
     console.log(newUser);
