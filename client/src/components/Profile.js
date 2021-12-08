@@ -1,9 +1,11 @@
 import React from "react";
 import BlogFeed from "./BlogFeed";
-import { useState, useEffect } from "react";
+import { useContext, useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { UserContext } from '../context/user';
 
-export default function Profile({user}) {
+export default function Profile() {
+  const {user, setUser} = useContext(UserContext);
   const params = useParams();
   const [userProfile, setUserProfile] = useState([]);
   useEffect(() => {
@@ -12,6 +14,7 @@ export default function Profile({user}) {
       .then((data) => setUserProfile(data));
   }, []);
 
+  console.log(userProfile);
   return (
     <div>
       <div className="userInfo">

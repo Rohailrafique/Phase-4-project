@@ -3,7 +3,7 @@ import Login from './Login'
 import { useState } from 'react'
 import Signup from './Signup'
 
-export default function LandingPage({setUser}) {
+export default function LandingPage() {
     const [signUp, setSignUp] = useState(false)
 
     return (
@@ -13,7 +13,7 @@ export default function LandingPage({setUser}) {
         <br/>
         <br/>
         <br/>
-        {signUp?<Signup setUser={setUser}/> :<Login  setUser={setUser} />}
+        {signUp?<Signup/> :<Login />}
         <br/>
         <br/>
        

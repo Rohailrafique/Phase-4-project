@@ -2,7 +2,7 @@ import React from "react";
 import BlogCard from "./BlogCard";
 import { useState, useEffect } from "react";
 
-export default function BlogFeed({userProfile, user}) {
+export default function BlogFeed({userProfile}) {
   const [feedData, setFeedData] = useState([]);
   console.log(userProfile)
   useEffect(() => {
@@ -15,7 +15,7 @@ export default function BlogFeed({userProfile, user}) {
   return (
     <div>
       {feedData.map((post) => {
-        return <BlogCard key={post.id} post={post} user={user}/>;
+        return <BlogCard key={post.id} post={post}/>;
       })}
     </div>
   );

@@ -1,8 +1,10 @@
 import React from "react";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { UserContext } from '../context/user';
 // import { Alert } from 'react-alert';
 
-export default function Signup({setUser}) {
+export default function Signup() {
+  const {user, setUser} = useContext(UserContext);
   const [newUser, setNewUser] = useState({
     email: "",
     display_name: "",
