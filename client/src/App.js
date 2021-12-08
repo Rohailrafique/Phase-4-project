@@ -11,10 +11,11 @@ function App() {
   const [username, setUsername] = useState('')
 
   useEffect(() => {
-    fetch('http://localhost:3000/me')
+    fetch('/me')
       .then(resp => resp.json())
       .then(data => console.log(data))
-  }, [])
+      .catch(e => console.error(e))
+  }, [username])
 
   return (
   <>

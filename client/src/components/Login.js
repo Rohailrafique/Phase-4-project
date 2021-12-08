@@ -9,18 +9,11 @@ export default function Login({ setUsername }) {
     async function handleLoginSubmit(e) {
         e.preventDefault();
         
-        const response = await fetch("http://localhost:3000/login", {
+        const response = await fetch("/login", {
             method: "POST",
-            // mode: 'cors',
-            // cache: 'no-cache',
             headers: { 
                 "Content-Type": "application/json",
-                // "withCredentials": true,
-                // "Access-Control-Allow-Credentials": true
             },
-            // redirect: 'follow',
-            // referrer: 'no-referrer',
-            // credentials: 'include',
             body: JSON.stringify(userInfo),
         })
         
