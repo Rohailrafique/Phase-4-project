@@ -23,7 +23,8 @@ class PostsController < ApplicationController
 
     def update
         if @current_user
-            post = @current_user.posts.find(params[:id]).update!(post_params)
+            post = @current_user.posts.find(params[:id])
+            post.update!(post_params)
             render json: post, status: :ok
         else
             render json: {error: "user not logged in"}

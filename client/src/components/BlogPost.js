@@ -9,7 +9,7 @@ export default function BlogPost() {
   const [blogPost, setBlogPost] = useState();
   const params = useParams();
 
-  console.log(blogPost);
+
 
   useEffect(() => {
     fetch(`/posts/${params.id}`)
@@ -30,21 +30,22 @@ export default function BlogPost() {
     }
   }
 
-  function handleEditClick() {}
+  function handleEditClick(blogPost) {
+    navigate(`/blogs/${blogPost.id}/edit`)
+  }
 
   if (!blogPost) return null;
 
   return (
     <div className="BlogPost">
       <h3>{blogPost.title}</h3>
-      <p>
+      <span>
         <ReactMarkdown children={blogPost.content} />
-      </p>
+      </span>
       {user.id === blogPost.user.id ? (
         <>
-          {" "}
-          <button onClick={handleEditClick}>Edit post</button>{" "}
-          <button onClick={handleDeleteClick}>Delete post</button>{" "}
+          <button onClick={(e)=>handleEditClick(blogPost)}>Edit post</button>
+          <button onClick={handleDeleteClick}>Delete post</button>
         </>
       ) : null}
       <p>Reaction</p>

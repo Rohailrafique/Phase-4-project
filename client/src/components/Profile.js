@@ -14,7 +14,7 @@ export default function Profile() {
       .then((data) => setUserProfile(data));
   }, []);
 
-  console.log(userProfile);
+
   return (
     <div>
       <div className="userInfo">

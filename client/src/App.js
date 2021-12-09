@@ -35,6 +35,7 @@ else
       <Route path='/followers/:username' element={<FollowList/>}></Route>
       <Route path='/blogs/:id' element={<BlogPost/>}></Route>
       <Route path='/blogs/new' element={<BlogForm/>}></Route>
+      <Route path={'/blogs/:id/edit'} element={<BlogForm/>}></Route>
     </Routes>
    
     

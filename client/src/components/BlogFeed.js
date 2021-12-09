@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 
 export default function BlogFeed({userProfile}) {
   const [feedData, setFeedData] = useState([]);
-  console.log(userProfile)
+
   useEffect(() => {
     const endPoint = userProfile ? `/posts?user_id=${userProfile.id}`:"/posts"
     fetch(endPoint)

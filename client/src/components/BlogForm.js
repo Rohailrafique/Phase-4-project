@@ -1,5 +1,7 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
+import { useParams } from "react-router-dom";
+
 
 export default function BlogForm() {
     const [blogData, setBlogData] = useState({
@@ -7,18 +9,28 @@ export default function BlogForm() {
         content: ''
     });
     const navigate = useNavigate();
+    const params = useParams();
+    
+       useEffect(()=>{
+           if(params.id)
+           fetch(`/posts/${params.id}`)
+           .then(r=>r.json())
+           .then(data=>setBlogData(data))
+       },[])
+   
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const response = await fetch('/posts', {
-            method: 'POST',
+        const response = await fetch(params.id?`/posts/${params.id}`:'/posts', {
+            method: params.id? 'PATCH':'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(blogData)
         });
         const data = await response.json();
+        
         if (response.ok) {
             navigate(`/blogs/${data.id}`)
         } else {
