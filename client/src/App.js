@@ -9,6 +9,8 @@ import BlogFeed from './components/BlogFeed';
 import BlogPost from './components/BlogPost';
 import BlogForm from './components/BlogForm';
 import { UserContext } from './context/user';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 
 function App() {

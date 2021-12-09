@@ -12,24 +12,26 @@ export default function Profile() {
     fetch(`/profile/${params.username}`)
       .then((res) => res.json())
       .then((data) => setUserProfile(data));
-  }, []);
+  }, [params.username]);
 
 
   return (
-    <div>
-      <div className="userInfo">
-        <img src={userProfile.image_url}></img>
+    <div className='container-fluid'>
+      <div className="profile">
+        <div className='profile-info m-3'>
+          
+        <img className='img-thumbnail border-dark' src={userProfile.image_url}></img>
         <h2>{userProfile.display_name}</h2>
         <p>{userProfile.username}</p>
-        <button>Edit Profile</button>
-        <a href="#LinkedIn">LinkedIn</a>
-        <a href="#Twitter">Twitter</a>
-        <a href="#Facebook">Facebook</a>
-      </div>
-      <div className="userAbout"></div>
-      <div className="userContact"></div>
-      <div className="userPosts">
+        <div className='nav flex-column'>
+        <a className="bi bi-linkedin" href={userProfile.linkedin_url} target='_blank'></a>
+        <a className="bi bi-twitter" href="#Twitter"></a>
+        <a className='bi bi-facebook' href="#Facebook"></a>
+        </div>
+        </div>
+      <div className="profile-blogs">
         {userProfile.id ? <BlogFeed user={user} userProfile={userProfile} /> : null}
+      </div>
       </div>
     </div>
   );
