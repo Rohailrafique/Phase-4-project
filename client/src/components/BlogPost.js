@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 import { UserContext } from "../context/user";
+import remarkGfm from 'remark-gfm';
 
 export default function BlogPost() {
   const { user, setUser } = useContext(UserContext);
@@ -37,10 +38,10 @@ export default function BlogPost() {
   if (!blogPost) return null;
 
   return (
-    <div className="BlogPost">
+    <div className="BlogPost px-5 pt-2">
       <h3>{blogPost.title}</h3>
       <span>
-        <ReactMarkdown children={blogPost.content} />
+        <ReactMarkdown children={blogPost.content} remarkPlugins={[remarkGfm]} />
       </span>
       {user.id === blogPost.user.id ? (
         <>

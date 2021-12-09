@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { useParams } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
+import remarkGfm from 'remark-gfm';
 
 
 
@@ -60,7 +61,7 @@ export default function BlogForm() {
                     <div id='blogPreview'className='card border-dark'>
                     
                     <h1>{blogData.title}</h1>
-                    <ReactMarkdown children={blogData.content} />
+                    <ReactMarkdown children={blogData.content} remarkPlugins={[remarkGfm]} />
                     </div>
                 </div>
 
