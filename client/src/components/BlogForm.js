@@ -50,13 +50,13 @@ export default function BlogForm() {
             <div className='row'>
                 <form className='col-6' onSubmit={handleSubmit}>
                     <label className='form-label'>Title:</label>
-                    <input className='form-control' type='text' name='title' value={blogData.title} onChange={handleChange} required></input>
+                    <input className='form-control border-dark' type='text' name='title' value={blogData.title} onChange={handleChange} required></input>
                     <br />
                     <label className='form-label'>Body:</label>
-                    <textarea id='blogText' className='form-control' name='content' value={blogData.content} onChange={handleChange}></textarea>
-                    <button className='btn btn-dark mt-5'>Submit</button>
+                    <textarea id='blogText' className='form-control border-dark' name='content' value={blogData.content} onChange={handleChange}></textarea>
+                    <button id='form-submit-button' className='btn btn-dark mt-5'>Submit</button>
                 </form>
-                <div className='col-6'>
+                <div id='blogPreviewColumn' className='col-6'>
                 <label id='preview'>Preview:</label>
                     <div id='blogPreview'className='card border-dark'>
                     

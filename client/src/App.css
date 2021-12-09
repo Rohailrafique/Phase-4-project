@@ -72,3 +72,12 @@ img.nav-img-thumbnail{
   border-collapse: collapse;
   padding: 5px;
 }
+
+#blogPreviewColumn {
+  border-left: 1px solid #5c5f63;
+}
+
+#form-submit-button:hover {
+  background-color: white;
+  color: black;
+}
