@@ -9,6 +9,7 @@ img.img-thumbnail{
 }
 img.nav-img-thumbnail{
   max-width: 5em;
+  max-height: 3em;
   border-radius: 5em;
   margin-left: 1em;
 }
@@ -31,4 +32,52 @@ img.nav-img-thumbnail{
 }
 #preview{
   margin-bottom: .5em;
+}
+
+
+
+#blogPreview blockquote, .BlogPost blockquote {
+  margin-left: 2em;
+  padding-left: 0.5em;
+  border-left: 5px solid rgb(66, 65, 65);
+  background-color: rgb(247, 243, 243);
+}
+
+#blogPreview blockquote p, .BlogPost blockquote p {
+  margin: 0;
+}
+
+#blogPreview pre, .BlogPost pre {
+  padding: 10px;
+  border-radius: 2px;
+  background-color: black;
+  color: white;
+}
+
+
+#blogPreview img, .BlogPost img {
+  max-width: 80%;
+}
+
+
+#blogPreview p code, .BlogPost p code {
+  padding-left: 0.25em;
+  padding-right: 0.25em;
+  border-radius: 2px;
+  background-color: rgb(240, 226, 217);
+}
+
+#blogPreview table, .BlogPost table, #blogPreview th, .BlogPost th, #blogPreview td, .BlogPost td {
+  border: 1px solid black;
+  border-collapse: collapse;
+  padding: 5px;
+}
+
+#blogPreviewColumn {
+  border-left: 1px solid #5c5f63;
+}
+
+#form-submit-button:hover {
+  background-color: white;
+  color: black;
 }
