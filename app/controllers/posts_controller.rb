@@ -31,10 +31,13 @@ class PostsController < ApplicationController
     end
 
     def destroy
-        # TODO: Verify you are logged in as this user first
-        user = User.find(params[:id])
-        user.destroy
-        head :no_content
+        post = Post.find(params[:id])
+        if @current_user.id == post.user_id
+             post.destroy
+            render json: {message: "deleted"}
+        else
+            render json: {error: "can't delete other user's post"}, status: :unauthorized
+        end
     end
 
     private
