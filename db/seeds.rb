@@ -27,7 +27,7 @@ adam = User.create(email: "adammooredev1@gmail.com", display_name: "adam", usern
   5.times do
     this_user.posts.create(
       title: Faker::Lorem.sentence,
-      content: Faker::Lorem.paragraphs(number: 12).join(' ')
+      content: Faker::Lorem.paragraphs(number: 12).join("\n\n")
     )
   end
 end

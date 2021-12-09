@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from "react-router-dom";
+import ReactMarkdown from 'react-markdown';
 
 export default function BlogPost() {
     const [blogPost, setBlogPost] = useState({});
@@ -16,7 +17,7 @@ export default function BlogPost() {
     return (
         <div className='BlogPost'>
             <h3>{blogPost.title}</h3>
-            <p>{blogPost.content}</p>
+            <p><ReactMarkdown children={blogPost.content} /></p>
             <p>Reaction</p>
             <p>Reaction</p>
             <p>Reaction</p>
