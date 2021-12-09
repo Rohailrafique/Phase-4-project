@@ -23,7 +23,7 @@ function App() {
         else resp.json().then(errors=> console.log(errors))})
       }, [])
       
-
+console.log(user)
 if(!user)
 return (<LandingPage />)
 else
