@@ -91,7 +91,7 @@ export default function Signup() {
         <label className='form-label'>Profile Image:</label>
         <input
           type="url"
-          name="profile_image"
+          name="image_url"
           className='form-control border-dark'
           value={newUser.image_url}
           onChange={handleOnChange}
