@@ -18,7 +18,7 @@ export default function BlogPost({ handleFun }) {
         if (resp.ok) {
           resp.json().then((data) => setBlogPost(data));
         } else {
-          resp.json().then(data => handleFun(data.error))
+          resp.json().then(data => handleFun(data.errors[0]))
           navigate('/')
         }
       })

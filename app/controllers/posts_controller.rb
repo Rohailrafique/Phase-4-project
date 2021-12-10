@@ -2,9 +2,9 @@ class PostsController < ApplicationController
 
     def index
         if params[:user_id]
-            render json: Post.where("user_id = ?", params[:user_id]), each_serializer: PostDetailSerializer
+            render json: Post.order(created_at: :desc).where("user_id = ?", params[:user_id]), each_serializer: PostDetailSerializer
         else
-            render json: Post.all, each_serializer: PostDetailSerializer
+            render json: Post.order(created_at: :desc), each_serializer: PostDetailSerializer
         end
     end
 
@@ -17,7 +17,7 @@ class PostsController < ApplicationController
             post = @current_user.posts.create!(post_params)
             render json: post, status: :created
         else
-            render json: {error: "user not logged in"}
+            render json: {errors: ["You are not logged in"]}, status: :unauthorized
         end
     end
 
@@ -27,7 +27,7 @@ class PostsController < ApplicationController
             post.update!(post_params)
             render json: post, status: :ok
         else
-            render json: {error: "user not logged in"}
+            render json: {errors: ["You are not logged in"]}, status: :unauthorized
         end
     end
 
@@ -37,7 +37,7 @@ class PostsController < ApplicationController
              post.destroy
             render json: {message: "deleted"}
         else
-            render json: {error: "can't delete other user's post"}, status: :unauthorized
+            render json: {errors: ["Can't delete other user's post"]}, status: :unauthorized
         end
     end
 
