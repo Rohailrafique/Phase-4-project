@@ -8,29 +8,24 @@ export default function BlogCard({ post }) {
   return (
     <div
       onClick={() => navigate(`/blogs/${post.id}`)}
-      className="card border-dark m-3"
+      className="card border-dark m-3 blogcard"
     >
-      <div className="card-header container ">
-        {/* <div className="container"> */}
-          <div style={{display: "inline"}} classname="row">
-            <img
-              id="card-thumbnail"
-              src={post.user.image_url}
-              className="img-thumbnail col-2"
-              alt="img-thumbnail"
-            ></img>
-            <div className="col-10">
-              {" "}
+      <div className="card-header ">
+              <img
+                id="card-thumbnail"
+                src={post.user.image_url}
+                className="img-thumbnail"
+                alt="img-thumbnail"
+              />
+            <div className="d-inline-block ms-3">
               <h5 className="card-title">{post.title}</h5>
               <h6 className="card-subtitle mb-2 text-muted">
                 Author: {post.user.username}
               </h6>
-            </div>
-          </div>
-        {/* </div> */}
+        </div>
       </div>
       <div className="card-body">
-        <p className="card-text">{post.content}</p>
+        <p className="card-text">{post.condensed_content}</p>
       </div>
     </div>
   );

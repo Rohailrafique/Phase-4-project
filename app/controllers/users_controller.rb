@@ -11,7 +11,7 @@ class UsersController < ApplicationController
             if params[:id] 
                 render json: User.find(params[:id])
             elsif params[:username]
-                render json: User.find_by(username: params[:username])
+                render json: User.find_by!(username: params[:username])
             else
                 render json: @current_user, status: :ok
             end

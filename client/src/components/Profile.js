@@ -1,17 +1,25 @@
 import React from "react";
 import BlogFeed from "./BlogFeed";
 import { useContext, useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { UserContext } from '../context/user';
 
-export default function Profile() {
+export default function Profile({ handleFun }) {
   const {user, setUser} = useContext(UserContext);
   const params = useParams();
+  const navigate = useNavigate();
   const [userProfile, setUserProfile] = useState([]);
   useEffect(() => {
     fetch(`/profile/${params.username}`)
-      .then((res) => res.json())
-      .then((data) => setUserProfile(data));
+      .then((res) => {
+        if (res.ok) {
+          res.json().then((data) => setUserProfile(data));
+        } else {
+          res.json().then(data => handleFun(data.error))
+          navigate('/')
+        }
+      })
+      
   }, [params.username]);
 
 
@@ -24,9 +32,9 @@ export default function Profile() {
         <h2>{userProfile.display_name}</h2>
         <p>{userProfile.username}</p>
         <div className='nav flex-column'>
-        <a className="bi bi-linkedin" href={userProfile.linkedin_url} target='_blank'></a>
-        <a className="bi bi-twitter" href="#Twitter"></a>
-        <a className='bi bi-facebook' href="#Facebook"></a>
+        {userProfile.linkedin_url && <a className="bi bi-linkedin" href={userProfile.linkedin_url} target='_blank'></a>}
+        {userProfile.twitter_url && <a className="bi bi-twitter" href={userProfile.twitter_url} target='_blank'></a>}
+        {userProfile.facebook_url &&<a className='bi bi-facebook' href={userProfile.facebook_url} target='_blank'></a>}
         </div>
         </div>
       <div className="profile-blogs">

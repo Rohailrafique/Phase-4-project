@@ -2,9 +2,9 @@ class PostsController < ApplicationController
 
     def index
         if params[:user_id]
-            render json: Post.where("user_id = ?", params[:user_id])
+            render json: Post.where("user_id = ?", params[:user_id]), each_serializer: PostDetailSerializer
         else
-            render json: Post.all
+            render json: Post.all, each_serializer: PostDetailSerializer
         end
     end
 

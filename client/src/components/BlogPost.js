@@ -4,7 +4,7 @@ import ReactMarkdown from "react-markdown";
 import { UserContext } from "../context/user";
 import remarkGfm from 'remark-gfm';
 
-export default function BlogPost() {
+export default function BlogPost({ handleFun }) {
   const { user, setUser } = useContext(UserContext);
   const navigate = useNavigate();
   const [blogPost, setBlogPost] = useState();
@@ -14,8 +14,15 @@ export default function BlogPost() {
 
   useEffect(() => {
     fetch(`/posts/${params.id}`)
-      .then((resp) => resp.json())
-      .then((data) => setBlogPost(data));
+      .then((resp) => {
+        if (resp.ok) {
+          resp.json().then((data) => setBlogPost(data));
+        } else {
+          resp.json().then(data => handleFun(data.error))
+          navigate('/')
+        }
+      })
+      
   }, []);
 
   async function handleDeleteClick() {
@@ -45,13 +52,13 @@ export default function BlogPost() {
       </span>
       {user.id === blogPost.user.id ? (
         <>
-          <button onClick={(e)=>handleEditClick(blogPost)}>Edit post</button>
-          <button onClick={handleDeleteClick}>Delete post</button>
+          <button id="form-submit-button" className='btn btn-dark' onClick={(e)=>handleEditClick(blogPost)}>Edit post</button>
+          <button className='btn btn-danger ms-3' onClick={handleDeleteClick}>Delete post</button>
         </>
       ) : null}
+      {/* <p>Reaction</p>
       <p>Reaction</p>
-      <p>Reaction</p>
-      <p>Reaction</p>
+      <p>Reaction</p> */}
     </div>
   );
 }

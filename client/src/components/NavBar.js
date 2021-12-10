@@ -3,8 +3,9 @@ import { Link } from "react-router-dom";
 import { UserContext } from "../context/user";
 // import { Form, FormControl } from 'react-bootstrap';
 
-export default function NavBar() {
+export default function NavBar({ fun, handleFun}) {
   const { user, setUser } = useContext(UserContext);
+  // const [fun, setFun] = useState();
   const [searchField, setSearchField] = useState();
   const [userList, setUserList] = useState([]);
   const handleLogOut = () => {
@@ -31,24 +32,29 @@ export default function NavBar() {
       id="navBar"
       className="navbar navbar-expand-xl navbar-dark bg-dark container-fluid sticky-top"
     >
-      <Link className="nav-link text-light" to="/blogs">
-        Console.Blog
+      <Link className="nav-link text-light" to="/blogs" onClick={() => handleFun('this is awesome!')} >
+
+          Console.Blog(<span className={fun && fun.startsWith("Couldn't find") && "text-danger"}>{fun}</span>)
+        
       </Link>
+      <span className="text-light">|</span>
       <Link className="nav-link text-light" to={`/followers/${user.username}`}>
         Connections
       </Link>
+      <span className="text-light">|</span>
       <Link className="nav-link text-light" to={`/users/${user.username}`}>
         Profile
       </Link>
+      <span className="text-light">|</span>
       <Link className="nav-link text-light" to="/blogs/new">
-        New Blog Post
+        New Post
       </Link>
       <form className="d-flex ms-auto">
         <input
           className="form-control me-2"
           role="search"
           type="search"
-          placeholder="Search"
+          placeholder="Search User"
           aria-label="Search"
           onChange={handleChange}
         />
@@ -60,12 +66,10 @@ export default function NavBar() {
               ))}
         </ul>
             : null}
-        <button className="btn btn-outline-light" type="submit">
-          Search
-        </button>
       </form>
       <div className="nav-item dropdown">
         <img
+          alt='profile thumbnail'
           src={user.image_url}
           className="nav-img-thumbnail dropdown-toggle"
           data-bs-toggle="dropdown"

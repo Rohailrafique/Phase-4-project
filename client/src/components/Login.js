@@ -34,12 +34,14 @@ export default function Login() {
 
     return (
         <div>
-             <form onSubmit={handleLoginSubmit}>
-                <label>Username:</label>
-                <input type='text' name="username" value={userInfo.username} onChange={handleOnChange} required></input>
-                <label>Password:</label>
-                <input type='password' name="password" value={userInfo.password} onChange={handleOnChange} required></input>
-                <button>Login</button>
+             <form onSubmit={handleLoginSubmit} style={{margin: 'auto', 'max-width': '600px'}}>
+                <label className='form-label'>Username:</label>
+                <input type='text' name="username" className='form-control border-dark' value={userInfo.username} onChange={handleOnChange} required></input>
+                <label className='form-label'>Password:</label>
+                <input type='password' name="password" className='form-control border-dark' value={userInfo.password} onChange={handleOnChange} required></input>
+                <div style={{textAlign: 'center'}} className='mt-3'>
+                    <button className='btn btn-dark'>Login</button>
+                </div>
             </form>
             
         </div>

@@ -15,6 +15,17 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   const {user, setUser} = useContext(UserContext);
+  const [fun, setFun] = useState();
+
+  const handleFun = (newString) => {
+    setFun(newString);
+    console.log(newString);
+    let timer1 = setTimeout(() => setFun(), 5000);
+  };
+
+  useEffect(() => {
+    if (user && user.display_name) handleFun(`Welcome, ${user.display_name}`)
+  }, [user])
 
   useEffect(() => {
     fetch('/me')
@@ -29,13 +40,13 @@ return (<LandingPage />)
 else
   return (
   <>
-    <NavBar />
+    <NavBar fun={fun} handleFun={handleFun} />
     <Routes>
       <Route path='/' element={<BlogFeed />}></Route>
       <Route path='/blogs' element={<BlogFeed />}></Route>
-      <Route path={`/users/:username`} element={<Profile />}></Route>
+      <Route path={`/users/:username`} element={<Profile handleFun={handleFun} />}></Route>
       <Route path='/followers/:username' element={<FollowList/>}></Route>
-      <Route path='/blogs/:id' element={<BlogPost/>}></Route>
+      <Route path='/blogs/:id' element={<BlogPost handleFun={handleFun} />}></Route>
       <Route path='/blogs/new' element={<BlogForm/>}></Route>
       <Route path={'/blogs/:id/edit'} element={<BlogForm/>}></Route>
     </Routes>

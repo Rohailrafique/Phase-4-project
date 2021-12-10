@@ -1,12 +1,17 @@
 import React from "react";
 import BlogCard from "./BlogCard";
 import { useState, useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
 
 
 export default function BlogFeed({userProfile}) {
   const [feedData, setFeedData] = useState([]);
   const [filteredBlogs, setFilteredBlogs] = useState([])
 
+  const [searchParams] = useSearchParams();
+  useEffect(() => {
+    // if (searchParams.get('error')) alert('Bad request');
+  }, [searchParams])
   
   useEffect(() => {
     const endPoint = userProfile ? `/posts?user_id=${userProfile.id}`:"/posts"
@@ -19,7 +24,7 @@ export default function BlogFeed({userProfile}) {
   }, [userProfile]);
 
   function handleChange(e){
-    let filteredData = feedData.filter((blog) => blog.title.includes(e.target.value))
+    let filteredData = feedData.filter((blog) => blog.title.toLowerCase().includes(e.target.value.toLowerCase()))
     setFilteredBlogs(filteredData)
   }
   function handleSubmit(e){
