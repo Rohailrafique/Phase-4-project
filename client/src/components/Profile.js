@@ -15,7 +15,7 @@ export default function Profile({ handleFun }) {
         if (res.ok) {
           res.json().then((data) => setUserProfile(data));
         } else {
-          res.json().then(data => handleFun(data.error))
+          res.json().then(data => handleFun(data.errors[0]))
           navigate('/')
         }
       })
